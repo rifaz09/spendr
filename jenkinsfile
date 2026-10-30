@@ -2,8 +2,9 @@ pipeline {
     agent any
 
     environment {
-        ODOO_USERNAME = credentials('ODOO_USERNAME')
-        ODOO_PASSWORD = credentials('ODOO_PASSWORD')
+        BASE_URL = credentials('BASE_URL')
+        BASE_EMAIL = credentials('BASE_EMAIL')
+        BASE_PASSWORD = credentials('BASE_PASSWORD')
     }
 
     stages {
@@ -28,8 +29,8 @@ pipeline {
     }
 
     post {
-        always {
-            script {
+    always {
+        node {
             publishHTML([
                 allowMissing: true,
                 alwaysLinkToLastBuild: true,
